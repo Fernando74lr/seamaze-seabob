@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1,.cls-2,.cls-3{fill:none;}.cls-4{fill:#fff;}.cls-5{clip-path:url(#clippath-1);}.cls-2{stroke:#c2951f;}.cls-2,.cls-3{stroke-miterlimit:10;stroke-width:11.16px;}.cls-3{stroke:#fff;}
+    </style>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" x="-199.31" y="-45.82" width="910.63" height="156.64"/>
+    </clipPath>
+  </defs>
+  <circle class="cls-4" cx="253.35" cy="260.81" r="124.6"/>
+  <circle class="cls-3" cx="253.35" cy="260.81" r="234.96"/>
+  <g class="cls-5">
+    <circle class="cls-2" cx="253.35" cy="260.81" r="234.96"/>
+  </g>
+</svg>
