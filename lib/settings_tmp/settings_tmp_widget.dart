@@ -3,8 +3,6 @@ import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -45,108 +43,86 @@ class _SettingsTmpWidgetState extends State<SettingsTmpWidget> {
       backgroundColor: Colors.white,
       body: SafeArea(
         top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            wrapWithModel(
-              model: _model.customAppBarModel,
-              updateCallback: () => setState(() {}),
-              child: CustomAppBarWidget(
-                title: 'Settings',
-                title2: '',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              wrapWithModel(
+                model: _model.customAppBarModel,
+                updateCallback: () => setState(() {}),
+                child: CustomAppBarWidget(
+                  title: 'Settings',
+                  title2: '',
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                height: 500.0,
-                child: Stack(
+              if (false)
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
-                      child: PageView(
-                        controller: _model.pageViewController ??=
-                            PageController(initialPage: 0),
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          FlutterFlowVideoPlayer(
-                            path:
-                                'http://192.168.0.183:3000/file/test_video_2.mp4',
-                            videoType: VideoType.network,
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: MediaQuery.sizeOf(context).height * 1.0,
-                            aspectRatio: 1.78,
-                            autoPlay: true,
-                            looping: true,
-                            showControls: true,
-                            allowFullScreen: true,
-                            allowPlaybackSpeedMenu: false,
-                          ),
-                          FlutterFlowVideoPlayer(
-                            path:
-                                'http://192.168.0.183:3000/file/test_video.mp4',
-                            videoType: VideoType.network,
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: MediaQuery.sizeOf(context).height * 1.0,
-                            aspectRatio: 1.78,
-                            autoPlay: false,
-                            looping: false,
-                            showControls: true,
-                            allowFullScreen: true,
-                            allowPlaybackSpeedMenu: false,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(-1.0, 1.0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 0.0, 16.0),
-                        child: smooth_page_indicator.SmoothPageIndicator(
-                          controller: _model.pageViewController ??=
-                              PageController(initialPage: 0),
-                          count: 2,
-                          axisDirection: Axis.horizontal,
-                          onDotClicked: (i) async {
-                            await _model.pageViewController!.animateToPage(
-                              i,
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          },
-                          effect: smooth_page_indicator.ExpandingDotsEffect(
-                            expansionFactor: 3.0,
-                            spacing: 8.0,
-                            radius: 16.0,
-                            dotWidth: 16.0,
-                            dotHeight: 8.0,
-                            dotColor: FlutterFlowTheme.of(context).accent1,
-                            activeDotColor:
-                                FlutterFlowTheme.of(context).primary,
-                            paintStyle: PaintingStyle.fill,
-                          ),
-                        ),
-                      ),
+                    FlutterFlowVideoPlayer(
+                      path: 'http://192.168.0.183:3000/file/test_video_2.mp4',
+                      videoType: VideoType.network,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 300.0,
+                      aspectRatio: 1.78,
+                      autoPlay: false,
+                      looping: false,
+                      showControls: true,
+                      allowFullScreen: true,
+                      allowPlaybackSpeedMenu: false,
                     ),
                   ],
                 ),
+              ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: [
+                  FlutterFlowVideoPlayer(
+                    path: 'http://192.168.0.183:3000/file/test_video_2.mp4',
+                    videoType: VideoType.network,
+                    height: 250.0,
+                    aspectRatio: 1.78,
+                    autoPlay: false,
+                    looping: false,
+                    showControls: true,
+                    allowFullScreen: true,
+                    allowPlaybackSpeedMenu: false,
+                  ),
+                  FlutterFlowVideoPlayer(
+                    path: 'http://192.168.0.183:3000/file/test_video.mp4',
+                    videoType: VideoType.network,
+                    height: 250.0,
+                    aspectRatio: 1.78,
+                    autoPlay: false,
+                    looping: false,
+                    showControls: true,
+                    allowFullScreen: true,
+                    allowPlaybackSpeedMenu: false,
+                  ),
+                  FlutterFlowVideoPlayer(
+                    path: 'http://192.168.0.183:3000/file/test_video_2.mp4',
+                    videoType: VideoType.network,
+                    height: 250.0,
+                    aspectRatio: 1.78,
+                    autoPlay: false,
+                    looping: false,
+                    showControls: true,
+                    allowFullScreen: true,
+                    allowPlaybackSpeedMenu: false,
+                  ),
+                ].divide(SizedBox(height: 20.0)),
               ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [],
-            ),
-            wrapWithModel(
-              model: _model.customNavbBarModel,
-              updateCallback: () => setState(() {}),
-              child: CustomNavbBarWidget(),
-            ),
-          ],
+              wrapWithModel(
+                model: _model.customNavbBarModel,
+                updateCallback: () => setState(() {}),
+                child: CustomNavbBarWidget(),
+              ),
+            ],
+          ),
         ),
       ),
     );
