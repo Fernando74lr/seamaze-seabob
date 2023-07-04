@@ -61,10 +61,10 @@ class _SettingsTmpWidgetState extends State<SettingsTmpWidget> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 FlutterFlowWebView(
-                  content: 'https://flutter.dev',
-                  bypass: false,
+                  content: 'http://192.168.0.183:3000/file/test_video.mp4',
+                  bypass: true,
                   height: 211.0,
-                  verticalScroll: false,
+                  verticalScroll: true,
                   horizontalScroll: false,
                 ),
               ],

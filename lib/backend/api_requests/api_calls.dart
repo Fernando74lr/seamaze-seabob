@@ -261,7 +261,7 @@ class StatusCall {
 /// Start RACE LOCAL Group Code
 
 class RaceLocalGroup {
-  static String baseUrl = 'http://192.168.100.118:3000';
+  static String baseUrl = 'http://192.168.0.183:3000';
   static Map<String, String> headers = {};
   static BeginRaceCopyCall beginRaceCopyCall = BeginRaceCopyCall();
   static StartRaceCopyCall startRaceCopyCall = StartRaceCopyCall();
@@ -273,6 +273,7 @@ class RaceLocalGroup {
   static ViewRaceCopyCall viewRaceCopyCall = ViewRaceCopyCall();
   static TestCopyCall testCopyCall = TestCopyCall();
   static VideoTestCall videoTestCall = VideoTestCall();
+  static VideoLastTestCall videoLastTestCall = VideoLastTestCall();
 }
 
 class BeginRaceCopyCall {
@@ -498,6 +499,24 @@ class VideoTestCall {
       },
       params: {},
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class VideoLastTestCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Video last test',
+      apiUrl: '${RaceLocalGroup.baseUrl}/file/test_video.mp4',
+      callType: ApiCallType.GET,
+      headers: {
+        ...RaceLocalGroup.headers,
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
