@@ -2,7 +2,7 @@ import '/components/custom_app_bar_widget.dart';
 import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_web_view.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
@@ -72,21 +72,31 @@ class _SettingsTmpWidgetState extends State<SettingsTmpWidget> {
                             PageController(initialPage: 0),
                         scrollDirection: Axis.horizontal,
                         children: [
-                          FlutterFlowWebView(
-                            content:
+                          FlutterFlowVideoPlayer(
+                            path:
                                 'http://192.168.0.183:3000/file/test_video_2.mp4',
-                            bypass: true,
-                            height: 211.0,
-                            verticalScroll: true,
-                            horizontalScroll: false,
+                            videoType: VideoType.network,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            aspectRatio: 1.78,
+                            autoPlay: true,
+                            looping: true,
+                            showControls: true,
+                            allowFullScreen: true,
+                            allowPlaybackSpeedMenu: false,
                           ),
-                          FlutterFlowWebView(
-                            content:
+                          FlutterFlowVideoPlayer(
+                            path:
                                 'http://192.168.0.183:3000/file/test_video.mp4',
-                            bypass: true,
-                            height: 211.0,
-                            verticalScroll: true,
-                            horizontalScroll: false,
+                            videoType: VideoType.network,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            aspectRatio: 1.78,
+                            autoPlay: false,
+                            looping: false,
+                            showControls: true,
+                            allowFullScreen: true,
+                            allowPlaybackSpeedMenu: false,
                           ),
                         ],
                       ),
@@ -129,15 +139,7 @@ class _SettingsTmpWidgetState extends State<SettingsTmpWidget> {
             Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                FlutterFlowWebView(
-                  content: 'http://192.168.0.183:3000/file/test_video.mp4',
-                  bypass: true,
-                  height: 211.0,
-                  verticalScroll: true,
-                  horizontalScroll: false,
-                ),
-              ],
+              children: [],
             ),
             wrapWithModel(
               model: _model.customNavbBarModel,

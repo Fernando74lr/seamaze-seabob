@@ -90,6 +90,8 @@ class _HomeWidgetState extends State<HomeWidget> {
               FlutterFlowVideoPlayer(
                 path: 'http://192.168.0.183:3000/file/test_video.mp4',
                 videoType: VideoType.network,
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: 300.0,
                 autoPlay: true,
                 looping: true,
                 showControls: true,
