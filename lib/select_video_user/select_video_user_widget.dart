@@ -226,6 +226,110 @@ class _SelectVideoUserWidgetState extends State<SelectVideoUserWidget> {
                           ),
                         ],
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 4.0,
+                          alignment: WrapAlignment.start,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          direction: Axis.horizontal,
+                          runAlignment: WrapAlignment.start,
+                          verticalDirection: VerticalDirection.down,
+                          clipBehavior: Clip.none,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 12.0, 0.0, 12.0),
+                              child: Container(
+                                width: MediaQuery.sizeOf(context).width * 0.45,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  border: Border.all(
+                                    color: Color(0xFF9D791A),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 4.0, 4.0, 12.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 8.0, 4.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 12.0, 0.0),
+                                              child: Icon(
+                                                Icons.ondemand_video,
+                                                color: Color(0xFF57636C),
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                            Text(
+                                              'VIDEO',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .labelSmall
+                                                  .override(
+                                                    fontFamily:
+                                                        'Plus Jakarta Sans',
+                                                    color: Color(0xFF57636C),
+                                                    fontSize: 12.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Lap ${_model.lapNumberValue}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: Color(0xFF14181B),
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 4.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Time: 2.55s',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color: Color(0xFF57636C),
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

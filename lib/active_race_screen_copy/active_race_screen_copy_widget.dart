@@ -881,6 +881,16 @@ class _ActiveRaceScreenCopyWidgetState
                                                                   ),
                                                                   ParamType.int,
                                                                 ),
+                                                                'lapsUser':
+                                                                    serializeParam(
+                                                                  getJsonField(
+                                                                    usersListItem,
+                                                                    r'''$.laps''',
+                                                                  ),
+                                                                  ParamType
+                                                                      .JSON,
+                                                                  true,
+                                                                ),
                                                               }.withoutNulls,
                                                             );
                                                           },

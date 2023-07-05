@@ -607,6 +607,15 @@ class _ActiveRaceScreenWidgetState extends State<ActiveRaceScreenWidget> {
                                                                 ),
                                                                 ParamType.int,
                                                               ),
+                                                              'lapsUser':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.laps''',
+                                                                ),
+                                                                ParamType.JSON,
+                                                                true,
+                                                              ),
                                                             }.withoutNulls,
                                                           );
                                                         },

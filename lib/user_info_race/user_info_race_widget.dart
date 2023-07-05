@@ -4,6 +4,7 @@ import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -29,6 +30,7 @@ class UserInfoRaceWidget extends StatefulWidget {
     this.track,
     this.raceTime,
     this.lapsLength,
+    required this.lapsUser,
   })  : this.picture = picture ?? 'null',
         super(key: key);
 
@@ -43,6 +45,7 @@ class UserInfoRaceWidget extends StatefulWidget {
   final String? track;
   final int? raceTime;
   final int? lapsLength;
+  final List<dynamic>? lapsUser;
 
   @override
   _UserInfoRaceWidgetState createState() => _UserInfoRaceWidgetState();
@@ -257,7 +260,7 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 20.0),
+                                  0.0, 20.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -555,74 +558,335 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 0.0),
-                            child: FlutterFlowDropDown<String>(
-                              controller: _model.lapNumberValueController ??=
-                                  FormFieldController<String>(null),
-                              options: functions
-                                  .generateOptionsLaps(widget.lapsLength!)
-                                  .map((e) => valueOrDefault<String>(
-                                        e.toString(),
-                                        '0',
-                                      ))
-                                  .toList(),
-                              onChanged: (val) =>
-                                  setState(() => _model.lapNumberValue = val),
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 50.0,
-                              textStyle:
-                                  FlutterFlowTheme.of(context).bodyMedium,
-                              hintText: 'Please select the number of lap',
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 2.0,
-                              borderColor: Colors.transparent,
-                              borderWidth: 0.0,
-                              borderRadius: 0.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 4.0, 12.0, 4.0),
-                              hidesUnderline: true,
-                              isSearchable: false,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 15.0, 20.0, 15.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                await launchURL(
-                                    'http://10.42.0.1/video/${getJsonField(
-                                  (_model.responseViewRace?.jsonBody ?? ''),
-                                  r'''$.race_number''',
-                                ).toString()}/${widget.tag}/${valueOrDefault<String>(
-                                  _model.lapNumberValue,
-                                  '1',
-                                )}');
-                              },
-                              text: 'Watch video',
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).info,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: Colors.white,
-                                    ),
-                                elevation: 2.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
+                                0.0, 4.0, 0.0, 12.0),
+                            child: Container(
+                              width: double.infinity,
+                              height: 211.0,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(0.0),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.3),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 10.0, 0.0, 0.0),
+                                      child: Text(
+                                        'VIDEOS',
+                                        style: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .override(
+                                              fontFamily: 'Open Sans',
+                                              color: Color(0xFFC2951F),
+                                              fontSize: 40.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 0.0, 12.0),
+                                    child: Text(
+                                      'Select an option to see the video',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Open Sans',
+                                            color: Color(0xFF828282),
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (context) {
+                                        final lapsVideos =
+                                            widget.lapsUser!.toList();
+                                        return ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          primary: false,
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: lapsVideos.length,
+                                          itemBuilder:
+                                              (context, lapsVideosIndex) {
+                                            final lapsVideosItem =
+                                                lapsVideos[lapsVideosIndex];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      12.0, 12.0, 0.0, 12.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  setState(() {
+                                                    _model
+                                                        .lapNumberValueController
+                                                        ?.value = getJsonField(
+                                                      lapsVideosItem,
+                                                      r'''$.lap''',
+                                                    ).toString();
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          0.45,
+                                                  height: 9.0,
+                                                  decoration: BoxDecoration(
+                                                    color: _model
+                                                                .lapNumberValue ==
+                                                            functions.int2Str(
+                                                                getJsonField(
+                                                              lapsVideosItem,
+                                                              r'''$.lap''',
+                                                            ))
+                                                        ? Color(0xC4C2951F)
+                                                        : Color(0x00000000),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(4.0, 4.0,
+                                                                4.0, 12.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      4.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            12.0,
+                                                                            0.0),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .ondemand_video,
+                                                                  color: Color(
+                                                                      0xFF57636C),
+                                                                  size: 24.0,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                'VIDEO',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      color: Color(
+                                                                          0xFF57636C),
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Lap ${getJsonField(
+                                                              lapsVideosItem,
+                                                              r'''$.lap''',
+                                                            ).toString()}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: Color(
+                                                                      0xFF14181B),
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Time: ${getJsonField(
+                                                              lapsVideosItem,
+                                                              r'''$.time''',
+                                                            ).toString()} s',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: Color(
+                                                                      0xFF57636C),
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
+                          if (false)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 0.0),
+                              child: FlutterFlowDropDown<String>(
+                                controller: _model.lapNumberValueController ??=
+                                    FormFieldController<String>(null),
+                                options: functions
+                                    .generateOptionsLaps(widget.lapsLength!)
+                                    .map((e) => valueOrDefault<String>(
+                                          e.toString(),
+                                          '0',
+                                        ))
+                                    .toList(),
+                                onChanged: (val) =>
+                                    setState(() => _model.lapNumberValue = val),
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 50.0,
+                                textStyle:
+                                    FlutterFlowTheme.of(context).bodyMedium,
+                                hintText: 'Please select the number of lap',
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 2.0,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0.0,
+                                borderRadius: 0.0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 4.0, 12.0, 4.0),
+                                hidesUnderline: true,
+                                isSearchable: false,
+                              ),
+                            ),
+                          if (false)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 15.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  await launchURL(
+                                      'http://10.42.0.1/video/${getJsonField(
+                                    (_model.responseViewRace?.jsonBody ?? ''),
+                                    r'''$.race_number''',
+                                  ).toString()}/${widget.tag}/${valueOrDefault<String>(
+                                    _model.lapNumberValue,
+                                    '1',
+                                  )}');
+                                },
+                                text: 'Watch video',
+                                options: FFButtonOptions(
+                                  width: double.infinity,
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).info,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: Colors.white,
+                                      ),
+                                  elevation: 2.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                            ),
+                          if (_model.lapNumberValue != null &&
+                              _model.lapNumberValue != '')
+                            FlutterFlowVideoPlayer(
+                              path:
+                                  'http://192.168.0.183:3000/file/test_video_${_model.lapNumberValue}.mp4',
+                              videoType: VideoType.network,
+                              height: 250.0,
+                              aspectRatio: 1.78,
+                              autoPlay: true,
+                              looping: false,
+                              showControls: true,
+                              allowFullScreen: true,
+                              allowPlaybackSpeedMenu: false,
+                              lazyLoad: true,
+                            ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 15.0),

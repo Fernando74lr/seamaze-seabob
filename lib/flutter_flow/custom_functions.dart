@@ -59,3 +59,19 @@ String formatSecondsAsMinutes(int seconds) {
 int minutesToMiliseconds(int minutes) {
   return minutes * 60000;
 }
+
+int str2Int(String num) {
+  try {
+    return int.parse(num);
+  } catch (e) {
+    return 0;
+  }
+}
+
+String int2Str(int num) {
+  try {
+    return '$num';
+  } catch (e) {
+    return '0';
+  }
+}

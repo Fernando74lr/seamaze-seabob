@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/custom_app_bar_widget.dart';
 import '/components/custom_navb_bar_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -274,224 +275,276 @@ class _RaceResultsWidgetState extends State<RaceResultsWidget> {
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                      'userInfoRace',
-                                                      queryParameters: {
-                                                        'userId':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.user_id''',
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if (getJsonField(
+                                                          usersListItem,
+                                                          r'''$.picture''',
+                                                        ) !=
+                                                        null)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    25.0,
+                                                                    0.0,
+                                                                    25.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          clipBehavior:
+                                                              Clip.antiAlias,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
                                                           ),
-                                                          ParamType.int,
-                                                        ),
-                                                        'tag': serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.tag''',
-                                                          ).toString(),
-                                                          ParamType.String,
-                                                        ),
-                                                        'nickname':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.nickname''',
-                                                          ).toString(),
-                                                          ParamType.String,
-                                                        ),
-                                                        'seabobModel':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.seabob_model''',
-                                                          ).toString(),
-                                                          ParamType.String,
-                                                        ),
-                                                        'bestTime':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.best_time''',
-                                                          ),
-                                                          ParamType.double,
-                                                        ),
-                                                        'lapsDone':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.laps_done''',
-                                                          ),
-                                                          ParamType.int,
-                                                        ),
-                                                        'rank': serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.rank''',
-                                                          ),
-                                                          ParamType.int,
-                                                        ),
-                                                        'picture':
-                                                            serializeParam(
-                                                          getJsonField(
-                                                            usersListItem,
-                                                            r'''$.picture''',
-                                                          ).toString(),
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  },
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (getJsonField(
-                                                            usersListItem,
-                                                            r'''$.picture''',
-                                                          ) !=
-                                                          null)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      25.0,
-                                                                      0.0,
-                                                                      25.0,
-                                                                      0.0),
-                                                          child: Container(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child:
-                                                                Image.network(
-                                                              'http://10.42.0.1${getJsonField(
-                                                                usersListItem,
-                                                                r'''$.picture''',
-                                                              ).toString()}',
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                          child: Image.network(
+                                                            'http://10.42.0.1${getJsonField(
+                                                              usersListItem,
+                                                              r'''$.picture''',
+                                                            ).toString()}',
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
-                                                      if (getJsonField(
-                                                            usersListItem,
-                                                            r'''$.picture''',
-                                                          ) ==
-                                                          null)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      25.0,
-                                                                      0.0,
-                                                                      25.0,
-                                                                      0.0),
-                                                          child: Container(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child: Image.asset(
-                                                              'assets/images/96x96.png',
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                      ),
+                                                    if (getJsonField(
+                                                          usersListItem,
+                                                          r'''$.picture''',
+                                                        ) ==
+                                                        null)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    25.0,
+                                                                    0.0,
+                                                                    25.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          clipBehavior:
+                                                              Clip.antiAlias,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                          ),
+                                                          child: Image.asset(
+                                                            'assets/images/96x96.png',
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
+                                                      ),
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            getJsonField(
+                                                              usersListItem,
+                                                              r'''$.nickname''',
+                                                            ).toString(),
+                                                            'USER TESTS',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF646464),
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            'Model: ${valueOrDefault<String>(
                                                               getJsonField(
                                                                 usersListItem,
-                                                                r'''$.nickname''',
+                                                                r'''$.seabob_model''',
                                                               ).toString(),
-                                                              'USER TESTS',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Color(
-                                                                      0xFF646464),
-                                                                ),
+                                                              'MODEL NOT FOUND',
+                                                            )}',
+                                                            'Model: not asigned',
                                                           ),
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              'Model: ${valueOrDefault<String>(
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF646464),
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            'Tag: ${valueOrDefault<String>(
+                                                              getJsonField(
+                                                                usersListItem,
+                                                                r'''$.tag''',
+                                                              ).toString(),
+                                                              'Tag: not asigned',
+                                                            )}',
+                                                            'Tag: not asigned',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF646464),
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  50.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 30.0,
+                                                        borderWidth: 1.0,
+                                                        buttonSize: 60.0,
+                                                        icon: Icon(
+                                                          Icons.info_outline,
+                                                          color:
+                                                              Color(0xFFC2951F),
+                                                          size: 35.0,
+                                                        ),
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'userInfoRace',
+                                                            queryParameters: {
+                                                              'userId':
+                                                                  serializeParam(
                                                                 getJsonField(
                                                                   usersListItem,
-                                                                  r'''$.seabob_model''',
-                                                                ).toString(),
-                                                                'MODEL NOT FOUND',
-                                                              )}',
-                                                              'Model: not asigned',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Color(
-                                                                      0xFF646464),
+                                                                  r'''$.user_id''',
                                                                 ),
-                                                          ),
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              'Tag: ${valueOrDefault<String>(
+                                                                ParamType.int,
+                                                              ),
+                                                              'tag':
+                                                                  serializeParam(
                                                                 getJsonField(
                                                                   usersListItem,
                                                                   r'''$.tag''',
                                                                 ).toString(),
-                                                                'Tag: not asigned',
-                                                              )}',
-                                                              'Tag: not asigned',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Color(
-                                                                      0xFF646464),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'nickname':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.nickname''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'seabobModel':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.seabob_model''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'bestTime':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.best_time''',
                                                                 ),
-                                                          ),
-                                                        ],
+                                                                ParamType
+                                                                    .double,
+                                                              ),
+                                                              'lapsDone':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.laps_done''',
+                                                                ),
+                                                                ParamType.int,
+                                                              ),
+                                                              'rank':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.rank''',
+                                                                ),
+                                                                ParamType.int,
+                                                              ),
+                                                              'picture':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.picture''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'track':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  columnViewRaceResponse
+                                                                      .jsonBody,
+                                                                  r'''$.track''',
+                                                                ).toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'raceTime':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  columnViewRaceResponse
+                                                                      .jsonBody,
+                                                                  r'''$.race_time''',
+                                                                ),
+                                                                ParamType.int,
+                                                              ),
+                                                              'lapsLength':
+                                                                  serializeParam(
+                                                                0,
+                                                                ParamType.int,
+                                                              ),
+                                                              'lapsUser':
+                                                                  serializeParam(
+                                                                getJsonField(
+                                                                  usersListItem,
+                                                                  r'''$.laps''',
+                                                                ),
+                                                                ParamType.JSON,
+                                                                true,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional

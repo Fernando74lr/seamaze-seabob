@@ -40,9 +40,9 @@ export '/active_race_screen_copy/active_race_screen_copy_widget.dart'
     show ActiveRaceScreenCopyWidget;
 export '/step1_race_config/step1_race_config_widget.dart'
     show Step1RaceConfigWidget;
-export '/user_info_race_copy/user_info_race_copy_widget.dart'
-    show UserInfoRaceCopyWidget;
 export '/comments_section/comments_section_widget.dart'
     show CommentsSectionWidget;
+export '/user_info_race_copy/user_info_race_copy_widget.dart'
+    show UserInfoRaceCopyWidget;
 export '/select_video_user/select_video_user_widget.dart'
     show SelectVideoUserWidget;

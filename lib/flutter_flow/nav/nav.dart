@@ -189,6 +189,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 track: params.getParam('track', ParamType.String),
                 raceTime: params.getParam('raceTime', ParamType.int),
                 lapsLength: params.getParam('lapsLength', ParamType.int),
+                lapsUser:
+                    params.getParam<dynamic>('lapsUser', ParamType.JSON, true),
               ),
             ),
             FFRoute(
@@ -273,6 +275,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => Step1RaceConfigWidget(),
             ),
             FFRoute(
+              name: 'commentsSection',
+              path: 'commentsSection',
+              builder: (context, params) => CommentsSectionWidget(
+                raceRef: params.getParam(
+                    'raceRef', ParamType.DocumentReference, false, ['races']),
+              ),
+            ),
+            FFRoute(
               name: 'userInfoRaceCopy',
               path: 'userInfoRaceCopy',
               builder: (context, params) => UserInfoRaceCopyWidget(
@@ -287,14 +297,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 track: params.getParam('track', ParamType.String),
                 raceTime: params.getParam('raceTime', ParamType.int),
                 lapsLength: params.getParam('lapsLength', ParamType.int),
-              ),
-            ),
-            FFRoute(
-              name: 'commentsSection',
-              path: 'commentsSection',
-              builder: (context, params) => CommentsSectionWidget(
-                raceRef: params.getParam(
-                    'raceRef', ParamType.DocumentReference, false, ['races']),
+                lapsUser:
+                    params.getParam<dynamic>('lapsUser', ParamType.JSON, true),
               ),
             ),
             FFRoute(

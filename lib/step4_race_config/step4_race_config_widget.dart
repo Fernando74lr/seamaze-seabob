@@ -5,6 +5,7 @@ import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -193,16 +194,24 @@ class _Step4RaceConfigWidgetState extends State<Step4RaceConfigWidget> {
                                           15.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         () {
-                                          if (getJsonField(
-                                                FFAppState().storedRace,
-                                                r'''$.race_type''',
-                                              ) ==
+                                          if (functions
+                                                  .int2Str(valueOrDefault<int>(
+                                                getJsonField(
+                                                  FFAppState().storedRace,
+                                                  r'''$.race_type''',
+                                                ),
+                                                0,
+                                              )) ==
                                               '1') {
                                             return 'FREE TRAINING';
-                                          } else if (getJsonField(
-                                                FFAppState().storedRace,
-                                                r'''$.race_type''',
-                                              ) ==
+                                          } else if (functions
+                                                  .int2Str(valueOrDefault<int>(
+                                                getJsonField(
+                                                  FFAppState().storedRace,
+                                                  r'''$.race_type''',
+                                                ),
+                                                0,
+                                              )) ==
                                               '2') {
                                             return 'CLASSIC RACE';
                                           } else {
