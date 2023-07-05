@@ -1,12 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/custom_app_bar_widget.dart';
 import '/components/custom_navb_bar_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -65,6 +63,8 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.responseViewRace = await RaceGroup.viewRaceCall.call();
     });
+
+    _model.lapNumberFieldController ??= TextEditingController();
   }
 
   @override
@@ -561,7 +561,7 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                 0.0, 4.0, 0.0, 12.0),
                             child: Container(
                               width: double.infinity,
-                              height: 211.0,
+                              height: 224.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(0.0),
                               ),
@@ -587,20 +587,91 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 4.0, 0.0, 12.0),
-                                    child: Text(
-                                      'Select an option to see the video',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Open Sans',
-                                            color: Color(0xFF828282),
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.w500,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 0.0, 12.0),
+                                        child: Text(
+                                          'Select an option to see the video',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Open Sans',
+                                                color: Color(0xFF828282),
+                                                fontSize: 14.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 8.0, 0.0),
+                                          child: TextFormField(
+                                            controller:
+                                                _model.lapNumberFieldController,
+                                            readOnly: true,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              errorBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Open Sans',
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                            validator: _model
+                                                .lapNumberFieldControllerValidator
+                                                .asValidator(context),
                                           ),
-                                    ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Expanded(
                                     child: Builder(
@@ -621,53 +692,55 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 12.0, 0.0, 12.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  setState(() {
-                                                    _model
-                                                        .lapNumberValueController
-                                                        ?.value = getJsonField(
-                                                      lapsVideosItem,
-                                                      r'''$.lap''',
-                                                    ).toString();
-                                                  });
-                                                },
-                                                child: Container(
-                                                  width:
-                                                      MediaQuery.sizeOf(context)
-                                                              .width *
-                                                          0.45,
-                                                  height: 9.0,
-                                                  decoration: BoxDecoration(
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.45,
+                                                height: 9.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12.0),
+                                                  border: Border.all(
                                                     color: _model
-                                                                .lapNumberValue ==
+                                                                .lapNumberFieldController
+                                                                .text ==
                                                             functions.int2Str(
                                                                 getJsonField(
                                                               lapsVideosItem,
                                                               r'''$.lap''',
                                                             ))
-                                                        ? Color(0xC4C2951F)
-                                                        : Color(0x00000000),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                    ),
+                                                        ? FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary
+                                                        : Color(0xFF515050),
                                                   ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(4.0, 4.0,
-                                                                4.0, 12.0),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 4.0, 4.0, 12.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model
+                                                            .lapNumberFieldController
+                                                            ?.text = getJsonField(
+                                                          lapsVideosItem,
+                                                          r'''$.lap''',
+                                                        ).toString();
+                                                      });
+                                                    },
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -803,39 +876,6 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                           if (false)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 0.0),
-                              child: FlutterFlowDropDown<String>(
-                                controller: _model.lapNumberValueController ??=
-                                    FormFieldController<String>(null),
-                                options: functions
-                                    .generateOptionsLaps(widget.lapsLength!)
-                                    .map((e) => valueOrDefault<String>(
-                                          e.toString(),
-                                          '0',
-                                        ))
-                                    .toList(),
-                                onChanged: (val) =>
-                                    setState(() => _model.lapNumberValue = val),
-                                width: MediaQuery.sizeOf(context).width * 1.0,
-                                height: 50.0,
-                                textStyle:
-                                    FlutterFlowTheme.of(context).bodyMedium,
-                                hintText: 'Please select the number of lap',
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor: Colors.transparent,
-                                borderWidth: 0.0,
-                                borderRadius: 0.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 4.0, 12.0, 4.0),
-                                hidesUnderline: true,
-                                isSearchable: false,
-                              ),
-                            ),
-                          if (false)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 15.0, 20.0, 15.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -843,10 +883,7 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                       'http://10.42.0.1/video/${getJsonField(
                                     (_model.responseViewRace?.jsonBody ?? ''),
                                     r'''$.race_number''',
-                                  ).toString()}/${widget.tag}/${valueOrDefault<String>(
-                                    _model.lapNumberValue,
-                                    '1',
-                                  )}');
+                                  ).toString()}/${widget.tag}/${_model.lapNumberFieldController.text}');
                                 },
                                 text: 'Watch video',
                                 options: FFButtonOptions(
@@ -872,11 +909,11 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                 ),
                               ),
                             ),
-                          if (_model.lapNumberValue != null &&
-                              _model.lapNumberValue != '')
+                          if (_model.lapNumberFieldController.text != null &&
+                              _model.lapNumberFieldController.text != '')
                             FlutterFlowVideoPlayer(
                               path:
-                                  'http://192.168.0.183:3000/file/test_video_${_model.lapNumberValue}.mp4',
+                                  'http://192.168.0.183:3000/file/test_video_${_model.lapNumberFieldController.text}.mp4',
                               videoType: VideoType.network,
                               height: 250.0,
                               aspectRatio: 1.78,
@@ -885,7 +922,7 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                               showControls: true,
                               allowFullScreen: true,
                               allowPlaybackSpeedMenu: false,
-                              lazyLoad: true,
+                              lazyLoad: false,
                             ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(

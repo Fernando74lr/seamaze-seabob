@@ -1,12 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/custom_app_bar_widget.dart';
 import '/components/custom_navb_bar_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,9 +20,9 @@ class UserInfoRaceModel extends FlutterFlowModel {
   ApiCallResponse? responseViewRace;
   // Model for CustomAppBar component.
   late CustomAppBarModel customAppBarModel;
-  // State field(s) for lapNumber widget.
-  String? lapNumberValue;
-  FormFieldController<String>? lapNumberValueController;
+  // State field(s) for lapNumberField widget.
+  TextEditingController? lapNumberFieldController;
+  String? Function(BuildContext, String?)? lapNumberFieldControllerValidator;
   // Model for CustomNavbBar component.
   late CustomNavbBarModel customNavbBarModel;
 
@@ -38,6 +36,7 @@ class UserInfoRaceModel extends FlutterFlowModel {
   void dispose() {
     unfocusNode.dispose();
     customAppBarModel.dispose();
+    lapNumberFieldController?.dispose();
     customNavbBarModel.dispose();
   }
 
