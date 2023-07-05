@@ -93,17 +93,6 @@ class _SettingsTmpWidgetState extends State<SettingsTmpWidget> {
                     allowPlaybackSpeedMenu: false,
                   ),
                   FlutterFlowVideoPlayer(
-                    path: 'http://192.168.0.183:3000/file/test_video.mp4',
-                    videoType: VideoType.network,
-                    height: 250.0,
-                    aspectRatio: 1.78,
-                    autoPlay: false,
-                    looping: false,
-                    showControls: true,
-                    allowFullScreen: true,
-                    allowPlaybackSpeedMenu: false,
-                  ),
-                  FlutterFlowVideoPlayer(
                     path: 'http://192.168.0.183:3000/file/test_video_2.mp4',
                     videoType: VideoType.network,
                     height: 250.0,

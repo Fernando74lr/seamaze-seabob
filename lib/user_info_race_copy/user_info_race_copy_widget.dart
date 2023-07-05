@@ -4,6 +4,7 @@ import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -623,6 +624,21 @@ class _UserInfoRaceCopyWidgetState extends State<UserInfoRaceCopyWidget> {
                               ),
                             ),
                           ),
+                          if (_model.lapNumberValue != null &&
+                              _model.lapNumberValue != '')
+                            FlutterFlowVideoPlayer(
+                              path:
+                                  'http://192.168.0.183:3000/file/test_video_2.mp4',
+                              videoType: VideoType.network,
+                              height: 250.0,
+                              aspectRatio: 1.78,
+                              autoPlay: true,
+                              looping: false,
+                              showControls: true,
+                              allowFullScreen: true,
+                              allowPlaybackSpeedMenu: false,
+                              lazyLoad: true,
+                            ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 15.0),

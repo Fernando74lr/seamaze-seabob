@@ -44,3 +44,5 @@ export '/user_info_race_copy/user_info_race_copy_widget.dart'
     show UserInfoRaceCopyWidget;
 export '/comments_section/comments_section_widget.dart'
     show CommentsSectionWidget;
+export '/select_video_user/select_video_user_widget.dart'
+    show SelectVideoUserWidget;

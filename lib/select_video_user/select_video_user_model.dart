@@ -7,18 +7,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class UserInfoRaceCopyModel extends FlutterFlowModel {
+class SelectVideoUserModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (View race)] action in userInfoRaceCopy widget.
+  // Stores action output result for [Backend Call - API (View race)] action in selectVideoUser widget.
   ApiCallResponse? responseViewRace;
   // Model for CustomAppBar component.
   late CustomAppBarModel customAppBarModel;

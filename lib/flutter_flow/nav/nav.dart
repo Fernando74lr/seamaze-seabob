@@ -296,6 +296,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 raceRef: params.getParam(
                     'raceRef', ParamType.DocumentReference, false, ['races']),
               ),
+            ),
+            FFRoute(
+              name: 'selectVideoUser',
+              path: 'selectVideoUser',
+              builder: (context, params) => SelectVideoUserWidget(
+                userId: params.getParam('userId', ParamType.int),
+                tag: params.getParam('tag', ParamType.String),
+                nickname: params.getParam('nickname', ParamType.String),
+                seabobModel: params.getParam('seabobModel', ParamType.String),
+                bestTime: params.getParam('bestTime', ParamType.double),
+                lapsDone: params.getParam('lapsDone', ParamType.int),
+                rank: params.getParam('rank', ParamType.int),
+                picture: params.getParam('picture', ParamType.String),
+                track: params.getParam('track', ParamType.String),
+                raceTime: params.getParam('raceTime', ParamType.int),
+                lapsLength: params.getParam('lapsLength', ParamType.int),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

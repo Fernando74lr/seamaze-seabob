@@ -26,7 +26,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   auto_size_text: 3.0.0
-  better_player: ^0.0.83
   cached_network_image: 3.2.1
   chewie: 1.4.0
   cloud_firestore: 4.8.0
