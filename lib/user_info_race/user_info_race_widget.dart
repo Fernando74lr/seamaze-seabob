@@ -733,12 +733,12 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       setState(() {
-                                                        _model
-                                                            .lapNumberFieldController
-                                                            ?.text = getJsonField(
+                                                        _model.lapNumberFieldController
+                                                                ?.text =
+                                                            'http://10.42.0.1/file/${getJsonField(
                                                           lapsVideosItem,
-                                                          r'''$.lap''',
-                                                        ).toString();
+                                                          r'''$.filename''',
+                                                        ).toString()}';
                                                       });
                                                     },
                                                     child: Column(
@@ -912,8 +912,7 @@ class _UserInfoRaceWidgetState extends State<UserInfoRaceWidget> {
                           if (_model.lapNumberFieldController.text != null &&
                               _model.lapNumberFieldController.text != '')
                             FlutterFlowVideoPlayer(
-                              path:
-                                  'http://192.168.0.183:3000/file/test_video_${_model.lapNumberFieldController.text}.mp4',
+                              path: _model.lapNumberFieldController.text,
                               videoType: VideoType.network,
                               height: 250.0,
                               aspectRatio: 1.78,
