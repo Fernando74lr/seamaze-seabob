@@ -224,6 +224,10 @@ class _RegisterStep2WidgetState extends State<RegisterStep2Widget> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: CachedNetworkImage(
+                                        fadeInDuration:
+                                            Duration(milliseconds: 500),
+                                        fadeOutDuration:
+                                            Duration(milliseconds: 500),
                                         imageUrl: currentUserPhoto,
                                         fit: BoxFit.fitWidth,
                                       ),

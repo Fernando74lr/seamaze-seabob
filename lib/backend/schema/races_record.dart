@@ -101,6 +101,21 @@ class RacesRecord extends FirestoreRecord {
   String get photoUrlHost => _photoUrlHost ?? '';
   bool hasPhotoUrlHost() => _photoUrlHost != null;
 
+  // "likesCount" field.
+  int? _likesCount;
+  int get likesCount => _likesCount ?? 0;
+  bool hasLikesCount() => _likesCount != null;
+
+  // "likes" field.
+  List<DocumentReference>? _likes;
+  List<DocumentReference> get likes => _likes ?? const [];
+  bool hasLikes() => _likes != null;
+
+  // "host" field.
+  DocumentReference? _host;
+  DocumentReference? get host => _host;
+  bool hasHost() => _host != null;
+
   void _initializeFields() {
     _admin = castToType<int>(snapshotData['admin']);
     _competitors = castToType<int>(snapshotData['competitors']);
@@ -119,6 +134,9 @@ class RacesRecord extends FirestoreRecord {
     _created = snapshotData['created'] as DateTime?;
     _nicknameHost = snapshotData['nickname_host'] as String?;
     _photoUrlHost = snapshotData['photo_url_host'] as String?;
+    _likesCount = castToType<int>(snapshotData['likesCount']);
+    _likes = getDataList(snapshotData['likes']);
+    _host = snapshotData['host'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -171,6 +189,8 @@ Map<String, dynamic> createRacesRecordData({
   DateTime? created,
   String? nicknameHost,
   String? photoUrlHost,
+  int? likesCount,
+  DocumentReference? host,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -190,6 +210,8 @@ Map<String, dynamic> createRacesRecordData({
       'created': created,
       'nickname_host': nicknameHost,
       'photo_url_host': photoUrlHost,
+      'likesCount': likesCount,
+      'host': host,
     }.withoutNulls,
   );
 
@@ -218,7 +240,10 @@ class RacesRecordDocumentEquality implements Equality<RacesRecord> {
         listEquality.equals(e1?.imagesPath, e2?.imagesPath) &&
         e1?.created == e2?.created &&
         e1?.nicknameHost == e2?.nicknameHost &&
-        e1?.photoUrlHost == e2?.photoUrlHost;
+        e1?.photoUrlHost == e2?.photoUrlHost &&
+        e1?.likesCount == e2?.likesCount &&
+        listEquality.equals(e1?.likes, e2?.likes) &&
+        e1?.host == e2?.host;
   }
 
   @override
@@ -239,7 +264,10 @@ class RacesRecordDocumentEquality implements Equality<RacesRecord> {
         e?.imagesPath,
         e?.created,
         e?.nicknameHost,
-        e?.photoUrlHost
+        e?.photoUrlHost,
+        e?.likesCount,
+        e?.likes,
+        e?.host
       ]);
 
   @override

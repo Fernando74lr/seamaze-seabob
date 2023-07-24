@@ -128,14 +128,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'home',
-              path: 'home',
-              builder: (context, params) => HomeWidget(),
-            ),
-            FFRoute(
               name: 'settingsEdit',
               path: 'settingsEdit',
               builder: (context, params) => SettingsEditWidget(),
+            ),
+            FFRoute(
+              name: 'home',
+              path: 'home',
+              builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
               name: 'settingsTmp',
@@ -317,6 +317,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 raceTime: params.getParam('raceTime', ParamType.int),
                 lapsLength: params.getParam('lapsLength', ParamType.int),
               ),
+            ),
+            FFRoute(
+              name: 'profileRaceMyProfile',
+              path: 'profileRaceMyProfile',
+              builder: (context, params) => ProfileRaceMyProfileWidget(),
+            ),
+            FFRoute(
+              name: 'profileRaceFriend',
+              path: 'profileRaceFriend',
+              builder: (context, params) => ProfileRaceFriendWidget(
+                userRef: params.getParam(
+                    'userRef', ParamType.DocumentReference, false, ['users']),
+              ),
+            ),
+            FFRoute(
+              name: 'notifications',
+              path: 'notifications',
+              builder: (context, params) => NotificationsWidget(),
+            ),
+            FFRoute(
+              name: 'searchUsers',
+              path: 'searchUsers',
+              builder: (context, params) => SearchUsersWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

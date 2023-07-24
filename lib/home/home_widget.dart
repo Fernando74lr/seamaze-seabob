@@ -1,12 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/carousel_widget.dart';
 import '/components/custom_app_bar_widget.dart';
 import '/components/custom_navb_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_web_view.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,52 +64,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                   title2: '',
                 ),
               ),
-              FFButtonWidget(
-                onPressed: () async {
-                  context.pushNamed('settingsTmp');
-                },
-                text: 'Temp',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                  elevation: 3.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              FFButtonWidget(
-                onPressed: () async {
-                  context.pushNamed('selectVideoUser');
-                },
-                text: 'Videos',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                  elevation: 3.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
               Expanded(
                 child: StreamBuilder<List<RacesRecord>>(
                   stream: queryRacesRecord(
@@ -124,7 +79,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                           width: 50.0,
                           height: 50.0,
                           child: CircularProgressIndicator(
-                            color: Color(0xFFC2951F),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Color(0xFFC2951F),
+                            ),
                           ),
                         ),
                       );
@@ -548,36 +505,169 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 height: 80.0,
                                                 child: Stack(
                                                   children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -0.07, -0.48),
-                                                      child: Image.asset(
-                                                        'assets/images/flag.png',
-                                                        width: 40.0,
-                                                        height: 40.0,
-                                                        fit: BoxFit.cover,
+                                                    if (!valueOrDefault<bool>(
+                                                      columnRacesRecord.likes
+                                                          .contains(
+                                                              currentUserReference),
+                                                      false,
+                                                    ))
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -0.07, -0.48),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            if (valueOrDefault<
+                                                                bool>(
+                                                              columnRacesRecord
+                                                                  .likes
+                                                                  .contains(
+                                                                      currentUserReference),
+                                                              false,
+                                                            )) {
+                                                              await columnRacesRecord
+                                                                  .reference
+                                                                  .update({
+                                                                'likes': FieldValue
+                                                                    .arrayRemove([
+                                                                  currentUserReference
+                                                                ]),
+                                                                'likesCount':
+                                                                    FieldValue
+                                                                        .increment(
+                                                                            -(1)),
+                                                              });
+                                                              return;
+                                                            } else {
+                                                              await columnRacesRecord
+                                                                  .reference
+                                                                  .update({
+                                                                'likes': FieldValue
+                                                                    .arrayUnion([
+                                                                  currentUserReference
+                                                                ]),
+                                                                'likesCount':
+                                                                    FieldValue
+                                                                        .increment(
+                                                                            1),
+                                                              });
+                                                              return;
+                                                            }
+                                                          },
+                                                          child: Image.asset(
+                                                            'assets/images/flag.png',
+                                                            width: 40.0,
+                                                            height: 40.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                    if (valueOrDefault<bool>(
+                                                      columnRacesRecord.likes
+                                                          .contains(
+                                                              currentUserReference),
+                                                      false,
+                                                    ))
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -0.07, -0.48),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            if (valueOrDefault<
+                                                                bool>(
+                                                              columnRacesRecord
+                                                                  .likes
+                                                                  .contains(
+                                                                      currentUserReference),
+                                                              false,
+                                                            )) {
+                                                              await columnRacesRecord
+                                                                  .reference
+                                                                  .update({
+                                                                'likes': FieldValue
+                                                                    .arrayRemove([
+                                                                  currentUserReference
+                                                                ]),
+                                                                'likesCount':
+                                                                    FieldValue
+                                                                        .increment(
+                                                                            -(1)),
+                                                              });
+                                                              return;
+                                                            } else {
+                                                              await columnRacesRecord
+                                                                  .reference
+                                                                  .update({
+                                                                'likes': FieldValue
+                                                                    .arrayUnion([
+                                                                  currentUserReference
+                                                                ]),
+                                                                'likesCount':
+                                                                    FieldValue
+                                                                        .increment(
+                                                                            1),
+                                                              });
+                                                              return;
+                                                            }
+                                                          },
+                                                          child: Image.asset(
+                                                            'assets/images/flag-fill.png',
+                                                            width: 40.0,
+                                                            height: 40.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     Align(
                                                       alignment:
                                                           AlignmentDirectional(
                                                               0.1, 0.23),
-                                                      child: Text(
-                                                        '825',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Color(
-                                                                      0xFFC2951F),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    20.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            columnRacesRecord
+                                                                .likesCount
+                                                                .toString(),
+                                                            '0',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFFC2951F),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -605,35 +695,59 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     5.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child: Image.asset(
-                                                          'assets/images/comments-tmp-removebg.png',
-                                                          width: 40.0,
-                                                          height: 50.0,
-                                                          fit: BoxFit.cover,
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'commentsSection',
+                                                              queryParameters: {
+                                                                'raceRef':
+                                                                    serializeParam(
+                                                                  columnRacesRecord
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          },
+                                                          child: Image.asset(
+                                                            'assets/images/comments-tmp-removebg.png',
+                                                            width: 40.0,
+                                                            height: 50.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.1, 0.2),
-                                                      child: Text(
-                                                        '23',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Color(
-                                                                      0xFFC2951F),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
+                                                    if (false)
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.1, 0.2),
+                                                        child: Text(
+                                                          '23',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFFC2951F),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -651,34 +765,54 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       alignment:
                                                           AlignmentDirectional(
                                                               -0.65, -0.96),
-                                                      child: Image.asset(
-                                                        'assets/images/share-tmp-removebg.png',
-                                                        width: 40.0,
-                                                        height: 40.0,
-                                                        fit: BoxFit.cover,
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await actions
+                                                              .shareFirebaseImage(
+                                                            columnRacesRecord
+                                                                .imagesPath
+                                                                .first,
+                                                            columnRacesRecord
+                                                                .raceName,
+                                                          );
+                                                        },
+                                                        child: Image.asset(
+                                                          'assets/images/share-tmp-removebg.png',
+                                                          width: 40.0,
+                                                          height: 40.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -0.6, 0.19),
-                                                      child: Text(
-                                                        '4',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  color: Color(
-                                                                      0xFFC2951F),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
+                                                    if (false)
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -0.6, 0.19),
+                                                        child: Text(
+                                                          '4',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Open Sans',
+                                                                color: Color(
+                                                                    0xFFC2951F),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                        ),
                                                       ),
-                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -688,13 +822,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                FlutterFlowWebView(
-                                  content: 'https://flutter.dev',
-                                  bypass: false,
-                                  height: 500.0,
-                                  verticalScroll: false,
-                                  horizontalScroll: false,
                                 ),
                               ],
                             ),

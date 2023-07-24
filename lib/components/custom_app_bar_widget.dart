@@ -1,5 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -117,11 +119,45 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      Image.asset(
-                        'assets/images/bell.png',
-                        width: 45.0,
-                        height: 45.0,
-                        fit: BoxFit.cover,
+                      AuthUserStreamWidget(
+                        builder: (context) => InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('notifications');
+                          },
+                          child: badges.Badge(
+                            badgeContent: Text(
+                              valueOrDefault(
+                                      currentUserDocument?.notificationCounter,
+                                      0)
+                                  .toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.white,
+                                  ),
+                            ),
+                            showBadge: true,
+                            shape: badges.BadgeShape.circle,
+                            badgeColor: FlutterFlowTheme.of(context).primary,
+                            elevation: 4.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 8.0, 8.0, 8.0),
+                            position: badges.BadgePosition.topEnd(),
+                            animationType: badges.BadgeAnimationType.scale,
+                            toAnimate: true,
+                            child: Image.asset(
+                              'assets/images/bell.png',
+                              width: 45.0,
+                              height: 45.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

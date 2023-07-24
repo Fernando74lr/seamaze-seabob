@@ -75,6 +75,8 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                       ),
                       transitionOnUserGestures: true,
                       child: CachedNetworkImage(
+                        fadeInDuration: Duration(milliseconds: 500),
+                        fadeOutDuration: Duration(milliseconds: 500),
                         imageUrl: valueOrDefault<String>(
                           '${valueOrDefault<String>(
                             imagesItem,

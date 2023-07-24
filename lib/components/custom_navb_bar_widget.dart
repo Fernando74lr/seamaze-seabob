@@ -137,7 +137,8 @@ class _CustomNavbBarWidgetState extends State<CustomNavbBarWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              context.goNamed('profileRaces');
+                                              context.goNamed(
+                                                  'profileRaceMyProfile');
                                             },
                                             child: Stack(
                                               children: [

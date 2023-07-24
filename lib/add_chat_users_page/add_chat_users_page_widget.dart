@@ -182,165 +182,183 @@ class _AddChatUsersPageWidgetState extends State<AddChatUsersPageWidget> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<UsersRecord>>(
-              stream: queryUsersRecord(
-                limit: 50,
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50.0,
-                      height: 50.0,
-                      child: CircularProgressIndicator(
-                        color: Color(0xFFC2951F),
-                      ),
-                    ),
-                  );
-                }
-                List<UsersRecord> listViewUsersRecordList = snapshot.data!
-                    .where((u) => u.uid != currentUserUid)
-                    .toList();
-                return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: listViewUsersRecordList.length,
-                  itemBuilder: (context, listViewIndex) {
-                    final listViewUsersRecord =
-                        listViewUsersRecordList[listViewIndex];
-                    return Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'ChatPage',
-                            queryParameters: {
-                              'chatUser': serializeParam(
-                                listViewUsersRecord,
-                                ParamType.Document,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              'chatUser': listViewUsersRecord,
-                            },
-                          );
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 70.0,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 0.0,
-                                color: Color(0xFFDBE2E7),
-                                offset: Offset(0.0, 2.0),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(0.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                if (listViewUsersRecord.photoUrl != null &&
-                                    listViewUsersRecord.photoUrl != '')
-                                  Card(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: Color(0xFFC2951F),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 2.0, 2.0, 2.0),
-                                      child: Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.network(
-                                          listViewUsersRecord.photoUrl,
-                                        ),
-                                      ),
+            child: AuthUserStreamWidget(
+              builder: (context) => Builder(
+                builder: (context) {
+                  final usersRef =
+                      (currentUserDocument?.following?.toList() ?? []).toList();
+                  return ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: usersRef.length,
+                    itemBuilder: (context, usersRefIndex) {
+                      final usersRefItem = usersRef[usersRefIndex];
+                      return Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
+                        child: StreamBuilder<UsersRecord>(
+                          stream: UsersRecord.getDocument(usersRefItem),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Color(0xFFC2951F),
                                     ),
                                   ),
-                                if (listViewUsersRecord.photoUrl == null ||
-                                    listViewUsersRecord.photoUrl == '')
-                                  Card(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: Color(0xFFC2951F),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40.0),
+                                ),
+                              );
+                            }
+                            final userEntryUsersRecord = snapshot.data!;
+                            return InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'ChatPage',
+                                  queryParameters: {
+                                    'chatUser': serializeParam(
+                                      userEntryUsersRecord,
+                                      ParamType.Document,
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          2.0, 2.0, 2.0, 2.0),
-                                      child: Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.asset(
-                                          'assets/images/96x96.png',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                Padding(
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    'chatUser': userEntryUsersRecord,
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 70.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 0.0,
+                                      color: Color(0xFFDBE2E7),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                                child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Column(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        listViewUsersRecord.displayName,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Open Sans',
-                                              color: Color(0xFF646464),
-                                              fontSize: 17.0,
+                                      if (userEntryUsersRecord.photoUrl !=
+                                              null &&
+                                          userEntryUsersRecord.photoUrl != '')
+                                        Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: Color(0xFFC2951F),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    2.0, 2.0, 2.0, 2.0),
+                                            child: Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                userEntryUsersRecord.photoUrl,
+                                              ),
                                             ),
-                                      ),
-                                      Text(
-                                        listViewUsersRecord.username,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFF828282),
+                                          ),
+                                        ),
+                                      if (userEntryUsersRecord.photoUrl ==
+                                              null ||
+                                          userEntryUsersRecord.photoUrl == '')
+                                        Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: Color(0xFFC2951F),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(40.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    2.0, 2.0, 2.0, 2.0),
+                                            child: Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                'assets/images/96x96.png',
+                                              ),
                                             ),
+                                          ),
+                                        ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              userEntryUsersRecord.displayName,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Open Sans',
+                                                        color:
+                                                            Color(0xFF646464),
+                                                        fontSize: 17.0,
+                                                      ),
+                                            ),
+                                            Text(
+                                              userEntryUsersRecord.username,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            Color(0xFF828282),
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            );
+                          },
                         ),
-                      ),
-                    );
-                  },
-                );
-              },
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ],

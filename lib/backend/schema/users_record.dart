@@ -96,6 +96,31 @@ class UsersRecord extends FirestoreRecord {
   int get id => _id ?? 0;
   bool hasId() => _id != null;
 
+  // "followers" field.
+  List<DocumentReference>? _followers;
+  List<DocumentReference> get followers => _followers ?? const [];
+  bool hasFollowers() => _followers != null;
+
+  // "following" field.
+  List<DocumentReference>? _following;
+  List<DocumentReference> get following => _following ?? const [];
+  bool hasFollowing() => _following != null;
+
+  // "followers_counter" field.
+  int? _followersCounter;
+  int get followersCounter => _followersCounter ?? 0;
+  bool hasFollowersCounter() => _followersCounter != null;
+
+  // "following_counter" field.
+  int? _followingCounter;
+  int get followingCounter => _followingCounter ?? 0;
+  bool hasFollowingCounter() => _followingCounter != null;
+
+  // "notification_counter" field.
+  int? _notificationCounter;
+  int get notificationCounter => _notificationCounter ?? 0;
+  bool hasNotificationCounter() => _notificationCounter != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -113,6 +138,12 @@ class UsersRecord extends FirestoreRecord {
     _laps = castToType<int>(snapshotData['laps']);
     _bestLap = snapshotData['best_lap'] as String?;
     _id = castToType<int>(snapshotData['id']);
+    _followers = getDataList(snapshotData['followers']);
+    _following = getDataList(snapshotData['following']);
+    _followersCounter = castToType<int>(snapshotData['followers_counter']);
+    _followingCounter = castToType<int>(snapshotData['following_counter']);
+    _notificationCounter =
+        castToType<int>(snapshotData['notification_counter']);
   }
 
   static CollectionReference get collection =>
@@ -165,6 +196,9 @@ Map<String, dynamic> createUsersRecordData({
   int? laps,
   String? bestLap,
   int? id,
+  int? followersCounter,
+  int? followingCounter,
+  int? notificationCounter,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -184,6 +218,9 @@ Map<String, dynamic> createUsersRecordData({
       'laps': laps,
       'best_lap': bestLap,
       'id': id,
+      'followers_counter': followersCounter,
+      'following_counter': followingCounter,
+      'notification_counter': notificationCounter,
     }.withoutNulls,
   );
 
@@ -195,6 +232,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.displayName == e2?.displayName &&
         e1?.photoUrl == e2?.photoUrl &&
@@ -210,7 +248,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.weight == e2?.weight &&
         e1?.laps == e2?.laps &&
         e1?.bestLap == e2?.bestLap &&
-        e1?.id == e2?.id;
+        e1?.id == e2?.id &&
+        listEquality.equals(e1?.followers, e2?.followers) &&
+        listEquality.equals(e1?.following, e2?.following) &&
+        e1?.followersCounter == e2?.followersCounter &&
+        e1?.followingCounter == e2?.followingCounter &&
+        e1?.notificationCounter == e2?.notificationCounter;
   }
 
   @override
@@ -230,7 +273,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.weight,
         e?.laps,
         e?.bestLap,
-        e?.id
+        e?.id,
+        e?.followers,
+        e?.following,
+        e?.followersCounter,
+        e?.followingCounter,
+        e?.notificationCounter
       ]);
 
   @override

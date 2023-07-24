@@ -13,19 +13,52 @@ class AllChatsPageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for ListView widget.
-  PagingController<DocumentSnapshot?, ChatsRecord>? pagingController;
-  Query? pagingQuery;
-  List<StreamSubscription?> streamSubscriptions = [];
+
+  PagingController<DocumentSnapshot?, ChatsRecord>? listViewPagingController;
+  Query? listViewPagingQuery;
+  List<StreamSubscription?> listViewStreamSubscriptions = [];
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
   void dispose() {
-    streamSubscriptions.forEach((s) => s?.cancel());
+    listViewStreamSubscriptions.forEach((s) => s?.cancel());
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks are added here.
 
   /// Additional helper methods are added here.
+
+  PagingController<DocumentSnapshot?, ChatsRecord> setListViewController(
+    Query query, {
+    DocumentReference<Object?>? parent,
+  }) {
+    listViewPagingController ??= _createListViewController(query, parent);
+    if (listViewPagingQuery != query) {
+      listViewPagingQuery = query;
+      listViewPagingController?.refresh();
+    }
+    return listViewPagingController!;
+  }
+
+  PagingController<DocumentSnapshot?, ChatsRecord> _createListViewController(
+    Query query,
+    DocumentReference<Object?>? parent,
+  ) {
+    final controller =
+        PagingController<DocumentSnapshot?, ChatsRecord>(firstPageKey: null);
+    return controller
+      ..addPageRequestListener(
+        (nextPageMarker) => queryChatsRecordPage(
+          queryBuilder: (_) => listViewPagingQuery ??= query,
+          nextPageMarker: nextPageMarker,
+          streamSubscriptions: listViewStreamSubscriptions,
+          controller: controller,
+          pageSize: 25,
+          isStream: true,
+        ),
+      );
+  }
 }

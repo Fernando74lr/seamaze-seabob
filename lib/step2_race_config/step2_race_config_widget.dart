@@ -678,7 +678,7 @@ class _Step2RaceConfigWidgetState extends State<Step2RaceConfigWidget> {
                                                     textAlign: TextAlign.center,
                                                     keyboardType:
                                                         const TextInputType
-                                                                .numberWithOptions(
+                                                            .numberWithOptions(
                                                             signed: true,
                                                             decimal: true),
                                                     validator: _model

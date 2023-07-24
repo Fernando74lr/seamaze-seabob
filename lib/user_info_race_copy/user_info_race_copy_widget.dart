@@ -569,7 +569,10 @@ class _UserInfoRaceCopyWidgetState extends State<UserInfoRaceCopyWidget> {
                                       width: 50.0,
                                       height: 50.0,
                                       child: CircularProgressIndicator(
-                                        color: Color(0xFFC2951F),
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          Color(0xFFC2951F),
+                                        ),
                                       ),
                                     ),
                                   );

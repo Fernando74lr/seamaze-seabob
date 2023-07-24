@@ -7,8 +7,8 @@ export '/email_reset_password_sent/email_reset_password_sent_widget.dart'
 export '/on_boarding/on_boarding_widget.dart' show OnBoardingWidget;
 export '/home_copy/home_copy_widget.dart' show HomeCopyWidget;
 export '/register_step2/register_step2_widget.dart' show RegisterStep2Widget;
-export '/home/home_widget.dart' show HomeWidget;
 export '/settings_edit/settings_edit_widget.dart' show SettingsEditWidget;
+export '/home/home_widget.dart' show HomeWidget;
 export '/settings_tmp/settings_tmp_widget.dart' show SettingsTmpWidget;
 export '/settings/settings_widget.dart' show SettingsWidget;
 export '/waiting_room/waiting_room_widget.dart' show WaitingRoomWidget;
@@ -46,3 +46,9 @@ export '/user_info_race_copy/user_info_race_copy_widget.dart'
     show UserInfoRaceCopyWidget;
 export '/select_video_user/select_video_user_widget.dart'
     show SelectVideoUserWidget;
+export '/profile_race_my_profile/profile_race_my_profile_widget.dart'
+    show ProfileRaceMyProfileWidget;
+export '/profile_race_friend/profile_race_friend_widget.dart'
+    show ProfileRaceFriendWidget;
+export '/notifications/notifications_widget.dart' show NotificationsWidget;
+export '/search_users/search_users_widget.dart' show SearchUsersWidget;

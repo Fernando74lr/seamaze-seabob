@@ -12,6 +12,7 @@ class CarouselModel extends FlutterFlowModel {
 
   // State field(s) for PageView widget.
   PageController? pageViewController;
+
   int get pageViewCurrentIndex => pageViewController != null &&
           pageViewController!.hasClients &&
           pageViewController!.page != null

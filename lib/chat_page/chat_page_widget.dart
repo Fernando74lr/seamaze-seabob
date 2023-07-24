@@ -91,7 +91,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
           children: [
             Text(
               valueOrDefault<String>(
-                widget.chatUser!.displayName,
+                widget.chatUser?.displayName,
                 'Friend',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -197,7 +197,9 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     width: 50.0,
                     height: 50.0,
                     child: CircularProgressIndicator(
-                      color: Color(0xFFC2951F),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Color(0xFFC2951F),
+                      ),
                     ),
                   ),
                 ),
