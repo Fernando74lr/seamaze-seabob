@@ -23,7 +23,7 @@ Future<FFUploadedFile> getAsset(String assetName) async {
 // Create a FFUploadedFile object with the asset data and name
   final FFUploadedFile assetFile = FFUploadedFile(
     name: assetName,
-    data: assetData,
+    bytes: assetData,
   );
 
 // Return the asset file
