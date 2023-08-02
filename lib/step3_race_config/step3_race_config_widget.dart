@@ -10,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,13 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Step3RaceConfigModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.seabobLogoCopy = await actions.getAsset(
+        'seabob-logo.jpg',
+      );
+    });
 
     _model.nicknameGuestController ??=
         TextEditingController(text: widget.nicknameUser);
@@ -119,6 +127,18 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                           fontSize: 55.0,
                                           fontWeight: FontWeight.bold,
                                         ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.59, -0.37),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    'https://picsum.photos/seed/394/600',
+                                    width: 80.0,
+                                    height: 80.0,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -623,9 +643,6 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                   20.0, 0.0, 20.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  _model.seabobLogo = await actions.getAsset(
-                                    'seabob-logo.jpg',
-                                  );
                                   _model.responseAddUser =
                                       await RaceGroup.addUserCall.call(
                                     userId: valueOrDefault(
@@ -634,9 +651,8 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                         _model.nicknameGuestController.text,
                                     tag: _model.scannedTag,
                                     seabobModel: _model.selectedToyValue,
-                                    image: isiOS
-                                        ? _model.seabobLogo
-                                        : _model.uploadedLocalFile,
+                                    image:
+                                        isiOS ? null : _model.uploadedLocalFile,
                                     guest: valueOrDefault<int>(
                                       widget.isParticipant
                                           ? valueOrDefault(
