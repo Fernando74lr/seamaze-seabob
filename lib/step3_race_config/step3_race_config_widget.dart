@@ -8,7 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,32 +122,6 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                   ),
                                 ),
                               ),
-                              if (isiOS)
-                                Align(
-                                  alignment: AlignmentDirectional(0.7, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        25.0, 0.0, 25.0, 0.0),
-                                    child: AuthUserStreamWidget(
-                                      builder: (context) => Container(
-                                        width: 70.0,
-                                        height: 70.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 500),
-                                          imageUrl: currentUserPhoto,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
                             ],
                           ),
                         ),
@@ -649,6 +623,9 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                   20.0, 0.0, 20.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  _model.seabobLogo = await actions.getAsset(
+                                    'seabob-logo.jpg',
+                                  );
                                   _model.responseAddUser =
                                       await RaceGroup.addUserCall.call(
                                     userId: valueOrDefault(
@@ -658,7 +635,7 @@ class _Step3RaceConfigWidgetState extends State<Step3RaceConfigWidget> {
                                     tag: _model.scannedTag,
                                     seabobModel: _model.selectedToyValue,
                                     image: isiOS
-                                        ? _model.uploadedLocalFile
+                                        ? _model.seabobLogo
                                         : _model.uploadedLocalFile,
                                     guest: valueOrDefault<int>(
                                       widget.isParticipant

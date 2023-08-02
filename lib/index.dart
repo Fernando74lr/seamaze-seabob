@@ -26,10 +26,10 @@ export '/step2_race_config/step2_race_config_widget.dart'
 export '/race_results/race_results_widget.dart' show RaceResultsWidget;
 export '/step1_race_config_old/step1_race_config_old_widget.dart'
     show Step1RaceConfigOldWidget;
-export '/step0_race_config/step0_race_config_widget.dart'
-    show Step0RaceConfigWidget;
 export '/step4_race_config/step4_race_config_widget.dart'
     show Step4RaceConfigWidget;
+export '/step0_race_config/step0_race_config_widget.dart'
+    show Step0RaceConfigWidget;
 export '/stored_races/stored_races_widget.dart' show StoredRacesWidget;
 export '/add_chat_users_page/add_chat_users_page_widget.dart'
     show AddChatUsersPageWidget;
