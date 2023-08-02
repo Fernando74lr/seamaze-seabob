@@ -8,7 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,6 +33,8 @@ class Step3RaceConfigModel extends FlutterFlowModel {
 
   // Stores action output result for [Backend Call - API (Stop race)] action in Button widget.
   ApiCallResponse? responseCancelStopRace;
+  // Stores action output result for [Custom Action - getAsset] action in Button widget.
+  FFUploadedFile? seabobLogo;
   // Stores action output result for [Backend Call - API (Add user)] action in Button widget.
   ApiCallResponse? responseAddUser;
   // Stores action output result for [Backend Call - API (View race)] action in Button widget.

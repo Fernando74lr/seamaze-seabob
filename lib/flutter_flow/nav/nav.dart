@@ -218,14 +218,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => Step1RaceConfigOldWidget(),
             ),
             FFRoute(
-              name: 'step0RaceConfig',
-              path: 'step0RaceConfig',
-              builder: (context, params) => Step0RaceConfigWidget(),
-            ),
-            FFRoute(
               name: 'step4RaceConfig',
               path: 'step4RaceConfig',
               builder: (context, params) => Step4RaceConfigWidget(),
+            ),
+            FFRoute(
+              name: 'step0RaceConfig',
+              path: 'step0RaceConfig',
+              builder: (context, params) => Step0RaceConfigWidget(),
             ),
             FFRoute(
               name: 'storedRaces',
