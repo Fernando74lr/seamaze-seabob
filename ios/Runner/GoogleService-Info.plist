@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>391446224305-65g1jd9dt7s2dklcsfer8r5v0smub3sq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.391446224305-65g1jd9dt7s2dklcsfer8r5v0smub3sq</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>391446224305-fssa59d4si0vv7kmf4bhajd9l1vkbmbc.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA2Au7L2UzMFqi1fGQku3177AU0LMXm17U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>391446224305</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>seamaze.project</string>
+	<key>PROJECT_ID</key>
+	<string>seamaze-e8bbf</string>
+	<key>STORAGE_BUCKET</key>
+	<string>seamaze-e8bbf.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:391446224305:ios:b3fb98c80f465f91b8b190</string>
+</dict>
+</plist>
