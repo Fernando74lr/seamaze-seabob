@@ -15,7 +15,8 @@ import 'package:flutter/services.dart';
 Future<FFUploadedFile> getAsset(String assetName) async {
   // get asset file by name
 // Use the rootBundle to load the asset file
-  final ByteData assetByteData = await rootBundle.load('assets/$assetName');
+  final ByteData assetByteData =
+      await rootBundle.load('assets/images/$assetName');
 
 // Convert the ByteData to a Uint8List
   final Uint8List assetData = assetByteData.buffer.asUint8List();
