@@ -176,6 +176,7 @@ class _SelectVideoUserWidgetState extends State<SelectVideoUserWidget> {
                                   12.0, 4.0, 12.0, 4.0),
                               hidesUnderline: true,
                               isSearchable: false,
+                              isMultiSelect: false,
                             ),
                           ),
                           if (_model.lapNumberValue != null &&

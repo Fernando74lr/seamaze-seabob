@@ -207,6 +207,7 @@ class _Step1RaceConfigWidgetState extends State<Step1RaceConfigWidget> {
                                                     12.0, 4.0, 12.0, 4.0),
                                             hidesUnderline: true,
                                             isSearchable: false,
+                                            isMultiSelect: false,
                                           ),
                                         ),
                                       ],
@@ -306,6 +307,7 @@ class _Step1RaceConfigWidgetState extends State<Step1RaceConfigWidget> {
                                                 _model.firstCBValue == null ||
                                                     _model.firstCBValue == '',
                                             isSearchable: false,
+                                            isMultiSelect: false,
                                           ),
                                         ),
                                       ],
@@ -405,6 +407,7 @@ class _Step1RaceConfigWidgetState extends State<Step1RaceConfigWidget> {
                                                 _model.secondCBValue == null ||
                                                     _model.secondCBValue == '',
                                             isSearchable: false,
+                                            isMultiSelect: false,
                                           ),
                                         ),
                                       ],
@@ -504,6 +507,7 @@ class _Step1RaceConfigWidgetState extends State<Step1RaceConfigWidget> {
                                                 _model.thirdCBValue == null ||
                                                     _model.thirdCBValue == '',
                                             isSearchable: false,
+                                            isMultiSelect: false,
                                           ),
                                         ),
                                       ],

@@ -87,7 +87,7 @@ dependencies:
       ref: develop
   internet_connection_checker: ^0.0.1
   intl: 0.18.0
-  json_path: 0.4.1
+  json_path: 0.6.2
   mask_text_input_formatter: 2.4.0
   mime_type: 1.0.0
   page_transition: 2.0.4

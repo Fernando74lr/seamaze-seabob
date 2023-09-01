@@ -334,6 +334,7 @@ class _RegisterStep2WidgetState extends State<RegisterStep2Widget> {
                                 12.0, 4.0, 12.0, 4.0),
                             hidesUnderline: true,
                             isSearchable: false,
+                            isMultiSelect: false,
                           ),
                         ),
                       ],

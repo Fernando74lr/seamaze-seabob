@@ -295,6 +295,7 @@ class _NewUserForm2WidgetState extends State<NewUserForm2Widget> {
                                       12.0, 4.0, 12.0, 4.0),
                                   hidesUnderline: true,
                                   isSearchable: false,
+                                  isMultiSelect: false,
                                 ),
                               ),
                               Padding(

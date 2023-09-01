@@ -820,6 +820,7 @@ class _SettingsEditWidgetState extends State<SettingsEditWidget> {
                                                                       4.0),
                                                           hidesUnderline: true,
                                                           isSearchable: false,
+                                                          isMultiSelect: false,
                                                         ),
                                                       ),
                                                     ),
